@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @auth
+    <meta name="userId" content="{{ auth()->user()->id }}">
+    @endauth
     <!-- Application Title -->
     <title>
         {{ config('app.name', 'Laravel') }} |
@@ -18,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
+    
 </head>
 <body>
     <div class="wrapper" id="app">
@@ -27,6 +30,7 @@
         <div id="content">
             @include('layouts.navbar')
             @yield('content')
+            <div id="sound" style="display: none"></div>
         </div>
     </div>
     <!-- Scripts -->

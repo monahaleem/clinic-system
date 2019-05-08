@@ -383,7 +383,7 @@ End Nav
 ----------------------------------------------------- */
 
 /* ---------------------------------------------------
-start apponintmenet 
+start apponintmenet
 ----------------------------------------------------- */
 .apponintment {
   background: linear-gradient(to top, #f77062 0%, #fe5196 100%);
@@ -543,11 +543,11 @@ Rouchta Page
     margin: 2cm 2cm 2cm 1.5cm;
 }
 
-}  
+}
 
 
 /*=======================================
-invoice page 
+invoice page
 ========================================*/
 /* header */
 
@@ -802,4 +802,67 @@ tr:hover .cut {
 
 @page {
   margin: 0;
+}
+
+
+
+/* notifications */
+.be-top-header .navbar-nav>li.dropdown .dropdown-menu {
+  border-radius: 3px;
+  margin-top: 12px;
+  line-height: 20px;
+}
+.be-icons-nav>li.dropdown .dropdown-menu .title {
+    font-size: 1rem;
+    color: #8a8a8a;
+    text-align: center;
+    padding: 10px 0 8px;
+    border-bottom: 1px solid #ebebeb;
+}
+.be-notifications .be-scroller-notifications {
+    position: relative;
+    height: 222px;
+}
+.be-notifications .be-scroller-notifications>.content>ul {
+    list-style: none;
+    padding-left: 0;
+}
+.be-notifications .notification.notification-unread {
+    background-color: #ebf2fe;
+    border-bottom: 1px solid #dce9fd;
+}
+.be-notifications .notification {
+    overflow: hidden;
+    border-bottom: 1px solid #ebebeb;
+}
+.be-notifications .notification>a {
+    padding: 15px;
+    display: block;
+    overflow: hidden;
+}
+.be-notifications .notification>a .image {
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    background-color: #e4e4e4;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+}
+.be-notifications .notification>a .notification-info {
+    padding-left: 50px;
+    line-height: 14px;
+}
+.be-notifications .notification>a .notification-info .text {
+    font-weight: 500;
+    color: #8a8a8a;
+    font-size: .9231rem;
+    line-height: 16px;
+}
+.be-notifications .notification>a .notification-info .date {
+    color: #8a8a8a;
+    display: block;
+    font-size: .6923rem;
+    margin-top: 4px;
+    text-transform: uppercase;
 }

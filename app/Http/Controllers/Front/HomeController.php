@@ -27,7 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $events = [];
+
         $data = Event::all();
+
         if($data->count()) {
             foreach ($data as $key => $value) {
                 $events[] = Calendar::event(
@@ -35,16 +37,17 @@ class HomeController extends Controller
                     true,
                     new \DateTime($value->start_date),
                     new \DateTime($value->end_date.' +1 day'),
-                    null,
+                    0,
                     // Add color and link on event
-                  [
+                    [
                       'color' => '#f05050',
-                      'url' => 'pass here url and any route',
-                  ]
+                      'url' => url('/'),
+                    ]
                 );
             }
         }
 
+        Calendar::setId('reservation');
         $calendar = Calendar::addEvents($events);
         return view('front.home.home', compact('calendar'));
     }

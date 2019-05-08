@@ -43,14 +43,44 @@ if (token) {
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
+import Echo from 'laravel-echo'
 
-// import Echo from 'laravel-echo'
+window.Pusher = require('pusher-js');
 
-// window.Pusher = require('pusher-js');
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
+});
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+function playSound(filename){
+    var mp3Source = '<source src="' + filename + '.mp3" type="audio/mpeg">';
+    var oggSource = '<source src="' + filename + '.ogg" type="audio/ogg">';
+    var embedSource = '<embed hidden="true" autostart="true" loop="false" src="' + filename +'.mp3">';
+    document.getElementById("sound").innerHTML='<audio autoplay="autoplay">' + mp3Source + oggSource + embedSource + '</audio>';
+}
+
+var userId = $('meta[name=userId]').attr('content');
+
+window.Echo.private("App.User." + userId)
+	.notification((notification) => {
+		var body = '';
+		body += `
+		<li class="notification notification-unread">
+			<a href="#">
+				<div class="image">
+					<i class="far fa-user"></i>
+				</div>
+				<div class="notification-info">
+					<div class="text">
+						${notification.message}
+					</div>
+					<span class="date">${notification.time}</span>
+				</div>
+			</a>
+		</li>
+		`;
+      $('#notifications-body').prepend(body);
+      playSound('sounds/sound1');
+	});

@@ -20,15 +20,35 @@
           					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="false"> <i class="fas fa-bell"></i>
           					</button>
-          					<div class="dropdown-menu dropdown-menu-right">
-            						<button class="dropdown-item" type="button">Action</button>
-            						<button class="dropdown-item" type="button">Another action</button>
-            						<button class="dropdown-item" type="button">Something else here</button>
-          					</div>
+                    <div id="notifications-body" class="be-notifications dropdown-menu dropdown-menu-right" style="width: 350px">
+                      <?php
+                        $colors = [
+                          '#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688',
+                          '#4CAF50', '#8BC34A', '#CDDC39', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'
+                        ];
+                      ?>
+                        @if($notifications = auth()->user()->notifications)
+                            @foreach($notifications as $notification)
+                            <li class="notification notification-unread">
+                              <a href="#">
+                                <div class="image" style="background: {{ $colors[array_rand($colors, 1)] }}; color: #FFF;">
+                                  <i class="far fa-user" style="margin-top: 10px;"></i>
+                                </div>
+                                <div class="notification-info">
+                                  <div class="text">
+                                    {{ $notification->data['message'] }}
+                                  </div>
+                                  <span class="date">{{ $notification->created_at->diffForHumans() }}</span>
+                                </div>
+                              </a>
+                            </li>
+                            @endforeach
+                        @endif
+                    </div>
         				</div>
         				<li class="nav-item user">
                     <a class="nav-link" href="#">
-                        Assistant <i class="far fa-user"></i>
+                        {{ ucfirst(auth()->user()->type) }} <i class="far fa-user"></i>
                     </a>
         				</li>
       			</ul>
