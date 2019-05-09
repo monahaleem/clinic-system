@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Front', 'middleware' => 'auth'], function() {
 	 * Home Routes
 	 */
 	Route::get('/home', 'HomeController@index')->name('home');
-  // Route::get('events', 'HomeController@events');
+  Route::get('/events', 'HomeController@events')->name('events');
 });
 
 

@@ -99,5 +99,57 @@ Home Page
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-{!! $calendar->script() !!}
+<!-- {!! $calendar->script() !!} -->
+<?php
+	$colors = [
+		'#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688',
+		'#4CAF50', '#8BC34A', '#CDDC39', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'
+	];
+?>
+<script>
+$(document).ready(function () {
+	var calendar = $('#calendar-reservation').fullCalendar({
+		header: {
+			left: "prev,next today",
+			center: "title",
+			right: "month,agendaWeek,agendaDay"
+		},
+    events: [
+			@foreach($data as $d)
+			 {
+				 id: "{{ $d->id }}",
+				 title: "{{ $d->title }}",
+				 start: "{{ $d->start_date }}",
+				 end: "{{ $d->end_date }}",
+				 textColor: '#FFF',
+				 color: "{{ $colors[array_rand($colors, 1)] }}"
+			 },
+			@endforeach
+		],
+
+	});
+});
+
+function displayMessage(message) {
+	    $(".response").html("<div class='success'>"+message+"</div>");
+    setInterval(function() { $(".success").fadeOut(); }, 1000);
+}
+var colors = [
+	'#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688',
+	'#4CAF50', '#8BC34A', '#CDDC39', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'
+];
+
+$(document).on('submit', '#addReservationForm', function(e) {
+	e.preventDefault();
+	$('#calendar-reservation').fullCalendar('renderEvent', {
+		title: "Demo Event-2",
+		allDay: true,
+		start: "2019-05-09T00:00:00+00:00",
+		end: "2019-05-11T00:00:00+00:00",
+		color: colors[Math.floor(Math.random() * colors.length)],
+		textColor: '#FFF'
+  });
+})
+// $('#calendar').fullCalendar('removeEvents', event.id);
+</script>
 @endsection

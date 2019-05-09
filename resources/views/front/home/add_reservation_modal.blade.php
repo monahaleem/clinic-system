@@ -9,7 +9,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <form>
+                <form id="addReservationForm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Full Name</label>
                         <input type="text" class="form-control" placeholder="Enter Full name" name="fullname">

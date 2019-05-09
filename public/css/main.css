@@ -866,3 +866,16 @@ tr:hover .cut {
     margin-top: 4px;
     text-transform: uppercase;
 }
+.notification-info .text button {
+  float: right;
+}
+.notification-info .text button:focus {
+  outline: none;
+}
+.notification-info .text .fa-check {
+  width: auto !important;
+  height: auto !important;
+  background: #FFF;
+  border: 1px solid #DDD;
+  color: #000;
+}

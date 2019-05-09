@@ -49,6 +49,36 @@ class HomeController extends Controller
 
         Calendar::setId('reservation');
         $calendar = Calendar::addEvents($events);
-        return view('front.home.home', compact('calendar'));
+        return view('front.home.home', compact('calendar', 'data'));
+    }
+
+    public function events()
+    {
+      $events = [];
+
+      $data = Event::all();
+
+      if($data->count()) {
+          foreach ($data as $key => $value) {
+              $events[] = Calendar::event(
+                  $value->title,
+                  true,
+                  new \DateTime($value->start_date),
+                  new \DateTime($value->end_date.' +1 day'),
+                  0,
+                  // Add color and link on event
+                  [
+                    'color' => '#f05050',
+                    'url' => url('/'),
+                  ]
+              );
+          }
+      }
+
+      Calendar::setId('reservation');
+      $calendar = Calendar::addEvents($events);
+      return response([
+        'calendar' => $calendar
+      ], 200);
     }
 }

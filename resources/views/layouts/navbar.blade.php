@@ -37,6 +37,10 @@
                                 <div class="notification-info">
                                   <div class="text">
                                     {{ $notification->data['message'] }}
+                                    <button style="background: none; border: none;"
+                                      data-id="{{ $notification->id }}">
+                                      <i class="fa fa-check" style="font-size: 14px;"></i>
+                                    </button>
                                   </div>
                                   <span class="date">{{ $notification->created_at->diffForHumans() }}</span>
                                 </div>
